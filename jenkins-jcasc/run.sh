@@ -9,6 +9,13 @@ if [ -z "$(echo ${JENKINS_ADMIN_PASSWORD})" ]; then
     exit 1
 fi
 
+
+DEFAULT_REPO="maxib/jenkins-jasc"
+if [ -z "$(echo ${JENKINS_DOCKER_REPO})" ]; then
+    JENKINS_DOCKER_REPO=${DEFAULT_REPO}
+    echo "JENKINS_DOCKER_REPO is defined to '${DEFAULT_REPO}'"
+fi
+
 echo "Removing the current container ..."
 docker rm -f $(docker ps -aq -f "name=jenkins")
 
@@ -19,6 +26,6 @@ docker run -d \
     --env JENKINS_ADMIN_ID=${JENKINS_ADMIN_ID} \
     --env JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD} \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    maxib/jenkins-jasc
+    ${JENKINS_DOCKER_REPO}
 
     # -v jenkins_home:/var/jenkins_home 

@@ -20,6 +20,12 @@ Destroy VBox instances: `vagrant destroy`
     ssh -i ${i_file} -l ${user} -p ${port} ${host}
 
 
+## Build Jenkins Docker JCasc (`cd jenkins-jcasc`)
+- define docker image repo name (**Default** maxib/jenkins-jasc): 
+    - `export JENKINS_DOCKER_REPO=...`
+- `./build.sh`
+- `./push.sh`
+
 ## Deploy Docker and Jenkins by Ansible
 ### Run in ansible folder (`cd ansible`)
 
@@ -28,5 +34,11 @@ Destroy VBox instances: `vagrant destroy`
 - Verify connection to servers: `ansible -i ./vagrant_hosts all -m ping`
 - Verify the IPs of jenkins and app are identical in Vagrantfile and ansible/group_vars/all
 - Install collections: `ansible-galaxy collection install -r requirements.yml` 
-- Deploy: `ansible-playbook -v -i vagrant_hosts task.yml `
-- Uncheck 'Enable script security for Job DSL scripts' in `http://192.168.56.10:8080/configureSecurity/`
+- Define environment variables:
+    - `export JENKINS_ADMIN_ID=...`
+    - `export JENKINS_ADMIN_PASSWORD=...`
+- Deploy: `ansible-playbook -v -i vagrant_hosts task.yml --extra-vars "jenkins_admin_password=${JENKINS_ADMIN_PASSWORD} jenkins_admin_name=${JENKINS_ADMIN_ID}"`
+- Log in to [Jenkins](http://192.168.56.10:8080)
+- Go to [Configure Global Security](http://192.168.56.10:8080/configureSecurity/)
+- Uncheck 'Enable script security for Job DSL scripts'
+- Run [Job_DSL_Seed](http://192.168.56.10:8080/job/Job_DSL_Seed/build?delay=0sec) - **!! Warning !!** the link starts the Job :)
