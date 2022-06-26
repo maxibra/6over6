@@ -1,0 +1,43 @@
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: ${JENKINS_ADMIN_ID}
+         password: ${JENKINS_ADMIN_PASSWORD}
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:admin"
+        - "Overall/Read:authenticated"
+  # remotingSecurity:
+  #   enabled: true
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
+unclassified:
+  location:
+    url: http://127.0.0.1:8080/
+  # simple-theme-plugin:
+  #   elements:
+  #     - cssUrl:
+  #         url: "https://jenkins-contrib-themes.github.io/jenkins-material-theme/dist/material-orange.css"
+
+jobs:
+- script: >
+    job('Job_DSL_Seed') {
+      scm {
+        git {
+          remote {
+            url 'https://github.com/maxibra/jenkins_jobs_test.git'
+          }
+        }
+      }
+      steps {
+        jobDsl {
+          targets 'jobs/*.groovy'
+        }
+      }
+    }

@@ -1,0 +1,18 @@
+---
+
+- name: Pull default Docker image
+  community.docker.docker_image:
+    name: "{{ jenkins_container_image }}"
+    source: pull
+
+- name: Run Jenkins container
+  docker_container:
+    name: jenkins
+    image: "{{ jenkins_container_image }}"
+    restart_policy: on-failure
+    ports:
+      - "8080:8080"
+    volumes: /var/run/docker.sock:/var/run/docker.sock
+    env:
+      JENKINS_ADMIN_ID: "{{ jenkins_admin_name }}"
+      JENKINS_ADMIN_PASSWORD: "{{ jenkins_admin_password }}"

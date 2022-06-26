@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage ('GIT Checkout'){
+            steps {
+                git changelog: false, poll: false, url: 'https://github.com/maxibra/6over6.git'
+            }
+        }
+
+        stage ('Test'){
+            steps {
+                dir("app") {
+                    sh 'python fibonacii_test.py'
+                }
+            }
+        }
+    }
+}

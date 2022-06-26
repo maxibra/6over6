@@ -14,32 +14,6 @@ HOST_USER = 'maxibra'
 HOST_PATH = '/home/' + HOST_USER + '/' + PROJECT_NAME + '/'
 # Where to sync to on Guest 'vagrant' is the default user name
 GUEST_PATH = '/home/' + VM_USER + '/' + PROJECT_NAME + '/'
-# Vagrant.configure(2) do |config|
-#   # Vagrant box from Hashicorp
-#   config.vm.box = VAGRANT_BOX
-  
-#   # Actual machine name
-#   config.vm.hostname = VM_NAME
-#   # Set VM name in Virtualbox
-#   config.vm.provider "virtualbox" do |v|
-#     v.name = VM_NAME
-#     v.memory = 1024
-#   end
-#   #DHCP comment this out if planning on using NAT instead
-#   config.vm.network "private_network", type: "dhcp"
-#   # # Port forwarding uncomment this to use NAT instead of DHCP
-#   # config.vm.network "forwarded_port", guest: 80, host: VM_PORT
-#   # Sync folder
-#   #config.vm.synced_folder HOST_PATH, GUEST_PATH
-#   # Disable default Vagrant folder, use a unique path per project
-#   #config.vm.synced_folder '.', '/home/'+VM_USER+'', disabled: true
-#   # Install Git, Node.js 6.x.x, Latest npm
-#   config.vm.provision "shell", inline: <<-SHELL
-#     apt-get update
-#   SHELL
-# end
-
-
 
 Vagrant.configure(2) do |config|
   config.vm.box = VAGRANT_BOX

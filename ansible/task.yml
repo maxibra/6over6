@@ -1,4 +1,11 @@
-- name: apply common configuration to all nodes
-  hosts: vagrant
+- name: Instal Docker
+  hosts: all
+  become: true
+  roles:
+    - common
+
+- name: Run jenkins
+  hosts: jenkins
+  become: true
   roles:
     - jenkins
