@@ -1,13 +1,12 @@
 pipelineJob('example') {
-    displayName('Job DSL Example Project')
-    description('My first job')
-    deliveryPipelineConfiguration('qa', 'integration-tests')
+    displayName('Fibonacii Test and deploy')
+    description('Running unitest, build docker and deploy')
     logRotator {
         numToKeep(10)
         artifactNumToKeep(1)
     }
     throttleConcurrentBuilds {
-        categmaxTotalories(1)
+        maxTotal(1)
     }
 
     definition {

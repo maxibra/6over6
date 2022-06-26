@@ -19,6 +19,6 @@ docker run -d \
     --env JENKINS_ADMIN_ID=${JENKINS_ADMIN_ID} \
     --env JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD} \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    jenkins_jcasc
+    maxib/jenkins-jasc
 
     # -v jenkins_home:/var/jenkins_home 

@@ -31,13 +31,13 @@ jobs:
       scm {
         git {
           remote {
-            url 'https://github.com/maxibra/jenkins_jobs_test.git'
+            url 'https://github.com/maxibra/6over6.git'
           }
         }
       }
       steps {
         jobDsl {
-          targets 'jobs/*.groovy'
+          targets 'jenkins_jobs/*.groovy'
         }
       }
     }
