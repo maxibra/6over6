@@ -1,4 +1,4 @@
-pipelineJob('example') {
+pipelineJob('Fibonacii') {
     displayName('Fibonacii Test and deploy')
     description('Running unitest, build docker and deploy')
     logRotator {

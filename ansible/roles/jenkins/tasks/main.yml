@@ -1,7 +1,7 @@
 ---
 
 - name: Pull default Docker image
-  community.docker.docker_image:
+  docker_image:
     name: "{{ jenkins_container_image }}"
     source: pull
 

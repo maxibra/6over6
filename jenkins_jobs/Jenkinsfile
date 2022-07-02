@@ -3,16 +3,24 @@ pipeline {
     stages {
         stage ('GIT Checkout'){
             steps {
-                git changelog: false, poll: false, url: 'https://github.com/maxibra/6over6.git'
+                git branch: "main", changelog: false, poll: false, url: 'https://github.com/maxibra/6over6.git'
             }
         }
 
         stage ('Test'){
             steps {
                 dir("app") {
-                    sh 'python fibonacii_test.py'
+                    sh 'python3 fibonacii_test.py'
                 }
             }
+        }
+
+    }
+
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            cleanWs deleteDirs: true /* clean up our workspace */
         }
     }
 }

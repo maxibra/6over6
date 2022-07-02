@@ -27,6 +27,12 @@ RUN apt-get update -qq >/dev/null &&\
        DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
               docker-ce-rootless-extras >/dev/null
 
+# Python
+RUN apt update && \
+       apt install -y apt-utils software-properties-common
+       # add-apt-repository ppa:deadsnakes/ppa && \
+       # sudo apt install -y python3.8
+
 USER jenkins
 
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false

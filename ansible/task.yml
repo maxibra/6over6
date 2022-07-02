@@ -3,9 +3,13 @@
   become: true
   roles:
     - common
+  tags: 
+    - common
 
 - name: Run jenkins
   hosts: jenkins
   become: true
   roles:
+    - jenkins
+  tags:
     - jenkins

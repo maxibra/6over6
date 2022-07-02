@@ -13,7 +13,7 @@ for h in $(echo "${full_v_ssh}" | grep -w Host | awk '{print $2}'); do
 
     cat << EOF >> ${vagrant_hosts_file}
 [${h}]
-${host} ansible_port=${port} ansible_user=${user} ansible_ssh_private_key_file=${i_f}
+local_${h} ansible_ssh_host=127.0.0.1 ansible_port=${port} ansible_user=${user} ansible_ssh_private_key_file=${i_f}
 EOF
 done
 

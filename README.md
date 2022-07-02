@@ -37,8 +37,9 @@ Destroy VBox instances: `vagrant destroy`
 - Define environment variables:
     - `export JENKINS_ADMIN_ID=...`
     - `export JENKINS_ADMIN_PASSWORD=...`
-- Deploy: `ansible-playbook -v -i vagrant_hosts task.yml --extra-vars "jenkins_admin_password=${JENKINS_ADMIN_PASSWORD} jenkins_admin_name=${JENKINS_ADMIN_ID}"`
+- Deploy: `ansible-playbook -i vagrant_hosts task.yml --extra-vars "jenkins_admin_password=${JENKINS_ADMIN_PASSWORD} jenkins_admin_name=${JENKINS_ADMIN_ID}"`
 - Log in to [Jenkins](http://192.168.56.10:8080)
 - Go to [Configure Global Security](http://192.168.56.10:8080/configureSecurity/)
 - Uncheck 'Enable script security for Job DSL scripts'
 - Run [Job_DSL_Seed](http://192.168.56.10:8080/job/Job_DSL_Seed/build?delay=0sec) - **!! Warning !!** the link starts the Job :)
+- Run [Fibonacii Test and deploy] (http://192.168.56.10:8080/job/example/build?delay=0sec)
