@@ -14,8 +14,32 @@ pipeline {
                 }
             }
         }
-
+        stage('Building image') {
+            steps{
+                dir("app") {
+                    script {
+                        app = docker.build "maxib/fibonacii"
+                    }
+                }
+            }
+        }
+        stage('Pushing Fibonachii image') {
+            steps{
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docerio') {
+                        app.push("latest")
+                    }
+                }
+            }
+        }
+        stage('Deploying app') {
+            steps{
+                sshagent(credentials: ['ssh-app']) {
+                    sh 'ssh vagrant@192.168.56.11 docker run -d -name app maxib/fibonacii'
+                }
+            }
     }
+
 
     post {
         always {

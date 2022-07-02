@@ -29,9 +29,15 @@ RUN apt-get update -qq >/dev/null &&\
 
 # Python
 RUN apt update && \
-       apt install -y apt-utils software-properties-common
+       apt install -y apt-utils \
+       software-properties-common \
+       python3-pip
        # add-apt-repository ppa:deadsnakes/ppa && \
        # sudo apt install -y python3.8
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
+
+RUN apt-get autoremove
 
 USER jenkins
 

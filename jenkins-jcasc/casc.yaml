@@ -24,7 +24,16 @@ unclassified:
   #   elements:
   #     - cssUrl:
   #         url: "https://jenkins-contrib-themes.github.io/jenkins-material-theme/dist/material-orange.css"
-
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          description: "Credentials docker.io"
+          id: "docerio"
+          password: ${JENKINS_DOCKER_PASSWD}
+          scope: GLOBAL
+          username: ${JENKINS_DOCKER_USERNAME}
 jobs:
 - script: >
     job('Job_DSL_Seed') {
