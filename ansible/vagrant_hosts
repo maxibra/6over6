@@ -1,5 +1,0 @@
-[jenkins]
-localj ansible_ssh_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=/home_add/Projects/6over6/.vagrant/machines/jenkins/virtualbox/private_key
-
-[app]
-locala ansible_ssh_host=127.0.0.1 ansible_port=2200 ansible_user=vagrant ansible_ssh_private_key_file=/home_add/Projects/6over6/.vagrant/machines/app/virtualbox/private_key
